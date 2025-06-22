@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+
+<html lang="id">
+
+<head>
+<style>
+    :root {
+      --primary: #064e3b;
+      --secondary: #059669;
+      --light: #ecfdf5;
+      --dark: #1f2937;
+      --gray: #6b7280;
+      --white: #ffffff;
+      --shadow: 0 2px 4px rgba(0,0,0,0.1);
+      --radius: 8px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--white);
+    }
+    h1, h2, h3 {
+      color: var(--primary);
+      line-height: 1.2;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    header {
+      background: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+	.logo {
+    display: flex;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+	margin-left: 10px;
+    object-fit: contain;
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 40px;
+    }
+    .logo span {
+        font-size: 1.2rem;
+    }
+}
+
+    .menu-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .menu-btn span {
+      display: block;
+      width: 100%;
+      height: 3px;
+	  margin-left: 80px;
+      background: var(--primary);
+      transition: all 0.3s ease;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+	  
+    }
+    nav a {
+      color: var(--dark);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--secondary);
+    }
+    .banner {
+      position: relative;
+      height: 60vh;
+      max-height: 500px;
+      overflow: hidden;
+	  
+    }
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ddd;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    .slide-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+      z-index: 3;
+      transform: translateY(-50%);
+    }
+    .slide-btn {
+      background: rgba(255,255,255,0.3);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .slide-btn:hover {
+      background: rgba(255,255,255,0.5);
+    }
+    .slide-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 3;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .dot.active {
+      background: white;
+    }
+    .services {
+      padding: 3rem 0;
+    }
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .service-item:hover {
+      transform: translateY(-5px);
+    }
+    .service-image {
+      width: 100%;
+      height: 180px;
+      background: #f0f0f0;
+      margin: 1rem 0;
+      border-radius: var(--radius);
+      display: none;
+    }
+    .service-item.active .service-image {
+      display: block;
+    }
+    .gallery {
+      padding: 3rem 0;
+      background: var(--light);
+    }
+    .gallery-slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .gallery-slide {
+      flex: 0 0 80%;
+      scroll-snap-align: start;
+    }
+    .gallery-image {
+      width: 100%;
+      height: 200px;
+      background: #f0f0f0;
+      border-radius: var(--radius);
+    }
+    .contact {
+      padding: 3rem 0;
+    }
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+      font-family: inherit;
+    }
+    textarea {
+      min-height: 150px;
+    }
+    .submit-btn {
+      background: var(--secondary);
+      color: var(--white);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .submit-btn:hover {
+      background: var(--primary);
+    }
+    footer {
+      background: var(--primary);
+      color: var(--white);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .footer-links a {
+      color: var(--white);
+    }
+    .floating-buttons {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 999;
+    }
+    .floating-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+    .floating-btn:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .floating-btn.whatsapp {
+      background-color: #25D366;
+    }
+    .floating-btn.instagram {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+    .tooltip {
+      position: absolute;
+      right: 75px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+    }
+    .floating-btn:hover .tooltip {
+      opacity: 1;
+    }
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: flex;
+      }
+      nav ul {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
+        box-shadow: var(--shadow);
+        clip-path: circle(0% at 100% 0);
+        transition: clip-path 0.4s ease;
+      }
+      nav ul.active {
+        clip-path: circle(150% at 100% 0);
+      }
+      .menu-btn.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+      .menu-btn.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-btn.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+      .banner {
+        height: 50vh;
+      }
+      .gallery-slide {
+        flex: 0 0 90%;
+      }
+    }
+    @media (max-width: 480px) {
+      .services-list {
+        grid-template-columns: 1fr;
+      }
+      .footer-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .banner {
+        height: 40vh;
+      }
+      .floating-buttons {
+        bottom: 15px;
+        right: 15px;
+        gap: 10px;
+      }
+    }
+	
+	.banner {
+  position: relative;
+  height: calc(100vh - 80px); /* tinggi layar dikurangi tinggi header */
+  margin-top: 0px; /* offset agar tidak tertutup header */
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide-content img {
+  display: none; /* gambar asli disembunyikan jika pakai background */
+}
+
+  </style>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berita & Acara - PD.INDOJAYA</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="description" content="Berita dan acara terbaru dari PD.INDOJAYA, penyedia solusi konstruksi berkelanjutan di Indonesia.">
+  
+  
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="images/INDOJAYA.png" alt="PD.INDOJAYA Logo">
+        <span>PD.INDOJAYA</span>
+      </div>
+      <button class="menu-btn" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#gallery">Gallery</a></li>
+          <li><a href="berita.html">Berita & Acara</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 3rem 1rem;">
+    <h1>Berita & Acara</h1>
+    <article style="margin-top: 2rem; line-height: 1.8;">
+      <h2 style="color: var(--primary);">PD.INDOJAYA Hadir di Expo Konstruksi Nasional 2025</h2>
+      <p>
+        Sebagai penyedia solusi konstruksi berkelanjutan, PD.INDOJAYA berpartisipasi dalam Expo Konstruksi Nasional 2025 yang diselenggarakan di Jakarta Convention Center. Dalam acara ini, kami memperkenalkan teknologi terbaru kami seperti sistem IPAL modular, atap bitumen premium, dan WPC untuk eksterior tahan cuaca.
+      </p>
+      <p>
+        Kunjungan dari ratusan pengembang, arsitek, dan kontraktor menjadi bukti bahwa minat terhadap material ramah lingkungan semakin tinggi. PD.INDOJAYA juga memperkenalkan sistem filter air berlapis dengan media karbon dan pasir aktif, serta kusen aluminium berdesain elegan untuk perumahan mewah.
+      </p>
+      <p>
+        Terima kasih atas kepercayaan pelanggan dan mitra yang selalu mendukung inovasi kami. Kami akan terus berkomitmen menyediakan solusi terbaik untuk kebutuhan konstruksi masa kini dan masa depan.
+      </p>
+    </article>
+
+    <section class="services" style="padding-top: 100px;">
+      <div class="container">
+        <h2>Berita Lainnya</h2>
+        <div class="services-list">
+
+          <div class="service-item">
+            <img src="images/news1.jpg" alt="Berita IPAL" style="width:100%; border-radius: 8px;">
+            <h3>PD.INDOJAYA Resmikan Instalasi IPAL di Kawasan Industri Bekasi</h3>
+            <p>Pada Mei 2024, PD.INDOJAYA menyelesaikan proyek IPAL skala besar untuk kawasan industri, menandai komitmen terhadap pengolahan limbah modern.</p>
+            <a href="#" style="color: var(--secondary); font-weight: bold;">Baca Selengkapnya</a>
+          </div>
+
+          <div class="service-item">
+            <img src="images/news2.jpg" alt="Pameran ACP" style="width:100%; border-radius: 8px;">
+            <h3>Partisipasi di Expo Bahan Bangunan 2024</h3>
+            <p>PD.INDOJAYA menampilkan WPC, ACP dan genteng bitumen terbaru dalam pameran konstruksi tahunan terbesar di Jakarta Convention Center.</p>
+            <a href="#" style="color: var(--secondary); font-weight: bold;">Baca Selengkapnya</a>
+          </div>
+
+          <div class="service-item">
+            <img src="images/news3.jpg" alt="Edukasi Filter Air" style="width:100%; border-radius: 8px;">
+            <h3>Edukasi Penggunaan Filter Air Bersih di Sekolah-sekolah</h3>
+            <p>Program sosial perusahaan memberikan edukasi penggunaan filter sand, carbon, dan softener ke berbagai sekolah dasar di Tangerang.</p>
+            <a href="#" style="color: var(--secondary); font-weight: bold;">Baca Selengkapnya</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="berita.html">Berita & Acara</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p>© 2025 PD.INDOJAYA. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <div class="floating-buttons">
+    <a href="https://wa.me/6289512954566" class="floating-btn whatsapp" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+      <span class="tooltip">Chat via WhatsApp</span>
+    </a>
+    <a href="https://instagram.com/pdindojaya" class="floating-btn instagram" target="_blank">
+      <i class="fab fa-instagram"></i>
+      <span class="tooltip">Follow on Instagram</span>
+    </a>
+  </div>
+</body>
+</html>
