@@ -179,39 +179,45 @@
 	    nav a:hover {
 	      color: var(--secondary);
 	    }
-	    .banner {
-	      position: relative;
-	      height: 60vh;
-	      max-height: 500px;
-	      overflow: hidden;
-		  
-	    }
-	    .slide {
-	      position: absolute;
-	      top: 0;
-	      left: 0;
-	      width: 100%;
-	      height: 100%;
-	      background-color: #ddd;
-	      opacity: 0;
-		  transition: opacity 1s ease-in-out;
-	    }
-	    .slide.active {
-	      opacity: 1;
-	    }
-	    .slide-content {
-	      position: relative;
-	      z-index: 2;
-	      height: 100%;
-	      display: flex;
-	      flex-direction: column;
-	      justify-content: center;
-	      align-items: center;
-	      text-align: center;
-	      color: white;
-	      padding: 0 1rem;
-	      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-	    }
+.banner {
+  position: relative;
+  height: 60vh;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ✅ gambar jadi full cover */
+  display: block;
+}
+
+.slide-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 2;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+
 	    .slide-nav {
 	      position: absolute;
 	      top: 50%;
@@ -546,77 +552,76 @@
 	      </nav>
 	    </div>
 	  </header>
-	 <section class="banner">
-	  <!-- ✅ Slide 1 -->
-	  <div class="slide active">
-	    <img src="images/wpc1.png" 
-	         alt="Panel WPC Bandung untuk Plafon dan Dinding" 
-	         loading="lazy">
-	    <div class="slide-content">
-	      <h1>Jual Genteng Bitumen Bandung – Atap Aspal Berkualitas</h1>
-	      <p>Panel WPC & atap bitumen tahan cuaca untuk rumah modern di Bandung</p>
-	    </div>
-	  </div>
-	
-	  <!-- ✅ Slide 2 -->
-	  <div class="slide">
-	    <img src="images/bitumen1.png" 
-	         alt="Genteng Bitumen Premium CTI Bandung Tahan Lama" 
-	         loading="lazy">
-	    <div class="slide-content">
-	      <h2>Genteng Bitumen Premium Bandung</h2>
-	      <p>Atap bitumen CTI awet, elegan, dan ramah cuaca tropis</p>
-	    </div>
-	  </div>
-	
-	  <!-- ✅ Slide 3 -->
-	  <div class="slide">
-	    <img src="images/aluminium1.png" 
-	         alt="Kusen Aluminium Bandung untuk Pintu dan Jendela" 
-	         loading="lazy">
-	    <div class="slide-content">
-	      <h2>Kusen Aluminium Bandung</h2>
-	      <p>Custom pintu & jendela aluminium modern dengan kualitas terbaik</p>
-	    </div>
-	  </div>
-	
-	  <!-- ✅ Slide 4 -->
-	  <div class="slide">
-	    <img src="images/wpc2.png" 
-	         alt="WPC Bandung untuk Plafon Dinding dan Fasad" 
-	         loading="lazy">
-	    <div class="slide-content">
-	      <h2>Panel WPC untuk Plafon & Dinding</h2>
-	      <p>Solusi elegan & tahan cuaca untuk interior maupun eksterior</p>
-	    </div>
-	  </div>
-	
-	  <!-- ✅ Slide 5 -->
-	  <div class="slide">
-	    <img src="images/acp1.png" 
-	         alt="Panel ACP Aluminium Bandung untuk Fasad Bangunan" 
-	         loading="lazy">
-	    <div class="slide-content">
-	      <h2>Panel ACP Aluminium Bandung</h2>
-	      <p>Material ACP berkualitas untuk fasad & desain arsitektur modern</p>
-	    </div>
-	  </div>
-	
-	
-	
-	   
-	    <div class="slide-nav">
-	      <button class="slide-btn prev-btn">❮</button>
-	      <button class="slide-btn next-btn">❯</button>
-	    </div>
-	    <div class="slide-dots">
-	      <button class="dot active" data-slide="0"></button>
-	      <button class="dot" data-slide="1"></button>
-	      <button class="dot" data-slide="2"></button>
-	      <button class="dot" data-slide="3"></button>
-	      <button class="dot" data-slide="4"></button>
-	    </div>
-	  </section>
+	<section class="banner">
+  <!-- Slide 1 -->
+  <div class="slide active">
+    <img src="images/wpc1.png" 
+         alt="Panel WPC Bandung untuk Plafon dan Dinding" 
+         loading="lazy" decoding="async">
+    <div class="slide-content">
+      <h1>Jual Genteng Bitumen Bandung – Atap Aspal Berkualitas</h1>
+      <p>Panel WPC & atap bitumen tahan cuaca untuk rumah modern di Bandung</p>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <img src="images/bitumen1.png" 
+         alt="Genteng Bitumen Premium CTI Bandung Tahan Lama" 
+         loading="lazy" decoding="async">
+    <div class="slide-content">
+      <h2>Genteng Bitumen Premium Bandung</h2>
+      <p>Atap bitumen CTI awet, elegan, dan ramah cuaca tropis</p>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <img src="images/aluminium1.png" 
+         alt="Kusen Aluminium Bandung untuk Pintu dan Jendela" 
+         loading="lazy" decoding="async">
+    <div class="slide-content">
+      <h2>Kusen Aluminium Bandung</h2>
+      <p>Custom pintu & jendela aluminium modern dengan kualitas terbaik</p>
+    </div>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="slide">
+    <img src="images/wpc2.png" 
+         alt="WPC Bandung untuk Plafon Dinding dan Fasad" 
+         loading="lazy" decoding="async">
+    <div class="slide-content">
+      <h2>Panel WPC untuk Plafon & Dinding</h2>
+      <p>Solusi elegan & tahan cuaca untuk interior maupun eksterior</p>
+    </div>
+  </div>
+
+  <!-- Slide 5 -->
+  <div class="slide">
+    <img src="images/acp1.png" 
+         alt="Panel ACP Aluminium Bandung untuk Fasad Bangunan" 
+         loading="lazy" decoding="async">
+    <div class="slide-content">
+      <h2>Panel ACP Aluminium Bandung</h2>
+      <p>Material ACP berkualitas untuk fasad & desain arsitektur modern</p>
+    </div>
+  </div>
+
+  <!-- Navigasi -->
+  <div class="slide-nav">
+    <button class="slide-btn prev-btn">❮</button>
+    <button class="slide-btn next-btn">❯</button>
+  </div>
+  <div class="slide-dots">
+    <button class="dot active" data-slide="0"></button>
+    <button class="dot" data-slide="1"></button>
+    <button class="dot" data-slide="2"></button>
+    <button class="dot" data-slide="3"></button>
+    <button class="dot" data-slide="4"></button>
+  </div>
+</section>
+
 	  <section id="services" class="services">
 	    <div class="container">
 	      <h2>Layanan Genteng Bitumen & Material Bangunan di Bandung</h2>
@@ -753,84 +758,118 @@
 	  });
 	
 	  // ================= SLIDER =================
-	  const slides = document.querySelectorAll('.slide');
-	  const dots = document.querySelectorAll('.dot');
-	  const prevBtn = document.querySelector('.prev-btn');
-	  const nextBtn = document.querySelector('.next-btn');
-	  const banner = document.querySelector('.banner');
-	  let currentSlide = 0;
-	
-	 function showSlide(n) {
-	  if (n >= slides.length) n = 0;
-	  if (n < 0) n = slides.length - 1;
-	  currentSlide = n;
-	  slides.forEach(slide => slide.classList.remove('active'));
-	  dots.forEach(dot => dot.classList.remove('active'));
-	  slides[currentSlide].classList.add('active');
-	  dots[currentSlide].classList.add('active');
-	}
-	
-	
-	  function nextSlide() {
-	    currentSlide++;
-	    showSlide(currentSlide);
-	  }
-	
-	  function prevSlide() {
-	    currentSlide--;
-	    showSlide(currentSlide);
-	  }
-	
-	  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-	  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-	
-	  dots.forEach((dot, index) => {
-	    dot.addEventListener('click', () => {
-	      currentSlide = index;
-	      showSlide(currentSlide);
-	    });
-	  });
-	
-	  // ✅ Auto slide
-	  setInterval(nextSlide, 5000);
-	
-	  // ✅ Geser manual (HP + desktop)
-	  let startX = 0;
-	  let isDragging = false;
-	
-	  // Touch (HP)
-	  banner.addEventListener('touchstart', e => {
-	    startX = e.touches[0].clientX;
-	  });
-	
-	  banner.addEventListener('touchend', e => {
-	    let endX = e.changedTouches[0].clientX;
-	    handleSwipe(startX, endX);
-	  });
-	
-	  // Mouse (Desktop)
-	  banner.addEventListener('mousedown', e => {
-	    isDragging = true;
-	    startX = e.clientX;
-	  });
-	
-	  banner.addEventListener('mouseup', e => {
-	    if (!isDragging) return;
-	    isDragging = false;
-	    let endX = e.clientX;
-	    handleSwipe(startX, endX);
-	  });
-	
-	  function handleSwipe(start, end) {
-	    if (start - end > 50) {
-	      nextSlide(); // geser kiri
-	    } else if (end - start > 50) {
-	      prevSlide(); // geser kanan
-	    }
-	  }
-	});
-	</script>
-	
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  const banner = document.querySelector('.banner');
+
+  // safety: jika elemen tidak ada, hentikan
+  if (!slides || slides.length === 0 || !banner) return;
+
+  let currentSlide = 0;
+  let autoTimer = null;
+  const AUTO_DELAY = 5000;
+  let startX = 0;
+  let isDragging = false;
+
+  function showSlide(n) {
+    if (n >= slides.length) n = 0;
+    if (n < 0) n = slides.length - 1;
+    currentSlide = n;
+
+    slides.forEach((slide, i) => {
+      // pastikan hanya slide aktif yang ditampilkan
+      if (i === currentSlide) {
+        slide.classList.add('active');
+        slide.style.display = 'block';
+      } else {
+        slide.classList.remove('active');
+        slide.style.display = 'none';
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentSlide);
+    });
+  }
+
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  // tombol next/prev
+  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAuto(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAuto(); });
+
+  // dot navigation
+  if (dots && dots.length) {
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => { showSlide(idx); resetAuto(); });
+    });
+  }
+
+  // touch untuk mobile (swipe)
+  banner.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  banner.addEventListener('touchend', e => {
+    const endX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : 0;
+    handleSwipe(startX, endX);
+  });
+
+  // mouse drag untuk desktop
+  banner.addEventListener('mousedown', e => {
+    isDragging = true;
+    startX = e.clientX;
+  });
+  banner.addEventListener('mouseup', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    handleSwipe(startX, e.clientX);
+  });
+  banner.addEventListener('mouseleave', () => { isDragging = false; });
+
+  function handleSwipe(start, end) {
+    if (start - end > 50) { // geser kiri => next
+      nextSlide(); resetAuto();
+    } else if (end - start > 50) { // geser kanan => prev
+      prevSlide(); resetAuto();
+    }
+  }
+
+  // AUTO slide dengan kontrol timer supaya bisa di-reset saat interaksi
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(nextSlide, AUTO_DELAY);
+  }
+  function stopAuto() {
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  }
+  function resetAuto() {
+    stopAuto();
+    startAuto();
+  }
+
+  // pause saat hover (opsional tapi berguna)
+  banner.addEventListener('mouseenter', stopAuto);
+  banner.addEventListener('mouseleave', startAuto);
+
+  // keyboard left/right
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { prevSlide(); resetAuto(); }
+    if (e.key === 'ArrowRight') { nextSlide(); resetAuto(); }
+  });
+
+  // inisialisasi awal
+  showSlide(0);
+  startAuto();
+  // ================= END SLIDER =================
 	
 	
 	</body>
