@@ -193,10 +193,13 @@
   position: absolute;
   top: 0;
   left: 0;
+pointer-events: none;
 }
 
 .slide.active {
   display: block;
+	  pointer-events: auto;  /* slide aktif boleh menangkap klik jika perlu */
+  z-index: 2;            /* pastikan slide aktif di bawah nav (nav z-index 3) */
 }
 
 .slide img {
@@ -251,6 +254,8 @@
 	      display: flex;
 	      gap: 10px;
 	      z-index: 3;
+			 z-index: 9999;
+  pointer-events: auto;
 	    }
 	    .dot {
 	      width: 12px;
