@@ -558,6 +558,57 @@ pointer-events: none;
 .slide-nav { padding-right: 70px; }
 /* ===================================================================== */
 
+/* === PERBAIKAN TAMPILAN MOBILE UNTUK SLIDER === */
+@media (max-width: 768px) {
+  /* Tombol panah */
+  .slide-nav .slide-btn {
+    top: 50% !important;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 50%;
+  }
+
+  .slide-nav .prev-btn { left: 15px !important; }
+  .slide-nav .next-btn { right: 15px !important; }
+
+  /* Posisi teks */
+  .banner .slide-content {
+    top: 40% !important;   /* naikkan teks */
+    transform: translate(-50%, -40%);
+    padding: 0 10px;
+  }
+
+  .banner .slide-content h1,
+  .banner .slide-content h2 {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .banner .slide-content p {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner .slide-content {
+    top: 35% !important;   /* lebih naik di layar kecil */
+    transform: translate(-50%, -35%);
+  }
+  .banner .slide-content h1,
+  .banner .slide-content h2 {
+    font-size: 16px;
+  }
+  .banner .slide-content p {
+    font-size: 13px;
+  }
+}
+
+
+	  
   </style>
 </head>
 <body>
