@@ -537,8 +537,8 @@ pointer-events: none;
 /* =================== OVERRIDE (paste ini terakhir) =================== */
 /* Pastikan slide non-active tidak menangkap klik dan navigasi selalu di atas */
 .banner .slide {
-  pointer-events: none !important;
-  touch-action: none;
+   pointer-events: auto !important;
+  touch-action: pan-y; /* memungkinkan scroll vertikal */
 }
 
 .banner .slide.active {
