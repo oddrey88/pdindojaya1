@@ -225,13 +225,13 @@ pointer-events: none;
 
 
     .slide-nav {
-      position: fixed;
+      position: absolute;
       top: 50%;
       width: 100%;
       display: flex;
       justify-content: space-between;
       padding: 0 1rem;
-      z-index: 9999;
+      z-index: 10;
       transform: translateY(-50%);
     }
     .slide-btn {
@@ -459,6 +459,8 @@ pointer-events: none;
       }
       .banner {
         height: 50vh;
+		   position: relative; /* sudah ada, wajib */
+  overflow: hidden;   /* pastikan slide dan panah tidak keluar */
       }
       .gallery-slide {
         flex: 0 0 90%;
