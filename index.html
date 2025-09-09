@@ -1,848 +1,837 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.dot');
-  const prevBtn = document.querySelector('.prev-btn');
-  const nextBtn = document.querySelector('.next-btn');
-  let currentSlide = 0;
-
-  function showSlide(n) {
-    if (n >= slides.length) currentSlide = 0;
-    if (n < 0) currentSlide = slides.length - 1;
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-  }
-
-  function nextSlide() {
-    currentSlide++;
-    showSlide(currentSlide);
-  }
-
-  function prevSlide() {
-    currentSlide--;
-    showSlide(currentSlide);
-  }
-
-  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      currentSlide = index;
-      showSlide(currentSlide);
-    });
-  });
-
-  // ✅ Auto slide
-  setInterval(nextSlide, 5000);
-
-  // ✅ Geser manual (HP / touchscreen)
-  let startX = 0;
-  let endX = 0;
-  const banner = document.querySelector('.banner');
-
-  banner.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-  });
-
-  banner.addEventListener('touchend', e => {
-    endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) {
-      nextSlide(); // geser kiri → slide berikut
-    } else if (endX - startX > 50) {
-      prevSlide(); // geser kanan → slide sebelumnya
-    }
-  });
-});
-</script>
-
-	
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://www.pdindojaya.com#business",
-  "name": "PD. INDOJAYA",
-  "url": "https://www.pdindojaya.com",
-  "logo": "https://www.pdindojaya.com/images/logo.png",
-  "image": "https://www.pdindojaya.com/images/logo.png",
-  "description": "Jual Genteng Bitumen di Bandung dengan harga kompetitif. Tersedia CTI, Tegola, Owens Corning, Bituline. Cocok untuk rumah, villa, dan proyek konstruksi.",
-  "telephone": "+62-895-1295-4566",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Jl. Cibaligo No.25",
-    "addressLocality": "Cimahi",
-    "addressRegion": "Jawa Barat",
-    "postalCode": "40123",
-    "addressCountry": "ID"
-  },
-  "areaServed": [
-    "Bandung",
-    "Cimahi",
-    "Lembang",
-    "Padalarang",
-    "Kabupaten Bandung"
-  ],
-  "openingHours": "Mo-Sa 08:00-17:00",
-  "sameAs": [
-    "https://instagram.com/pdindojaya",
-    "https://wa.me/6289512954566",
-	"https://www.facebook.com/pdindojaya",
-	"https://www.youtube.com/@pdindojaya",
-	"https://www.tiktok.com/@pdindojaya"
-  ]
-}
-</script>
-
-	
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-70ZJZWK2Y5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-70ZJZWK2Y5');
-</script>
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="canonical" href="https://www.pdindojaya.com/">
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="/logo192.png">
-<meta property="og:title" content="PD.INDOJAYA | Jual Genteng Bitumen Bandung">
-<meta property="og:description" content="Harga Genteng Bitumen Bandung">
-<meta property="og:image" content="https://www.pdindojaya.com/images/logo.png">
-<meta property="og:url" content="https://www.pdindojaya.com">
-<meta property="og:type" content="website">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PD.INDOJAYA">
-<meta name="twitter:description" content="Jual Genteng Bitumen Bandung CTI TEGOLA OWEN CORNING SEETON MAXXI.">
-<meta name="twitter:image" content="https://www.pdindojaya.com/images/logo.png">
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PD.INDOJAYA | Jual Genteng Bitumen Bandung | Harga Genteng Bitumen Bandung </title>
-
-  <!-- ========== DIUBAH: meta description (lebih natural, 150-160 char) ========== -->
-  <meta name="description" content="Jual Genteng Bitumen di Bandung dengan harga kompetitif. Tersedia CTI, Tegola, Owens Corning, Bituline. Cocok untuk rumah, villa, dan proyek konstruksi.">
-
-  <meta name="keywords" content="Jual Genteng Bitumen Bandung | Harga Genteng Bitumen Bandung">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #064e3b;
-      --secondary: #059669;
-      --light: #ecfdf5;
-      --dark: #1f2937;
-      --gray: #6b7280;
-      --white: #ffffff;
-      --shadow: 0 2px 4px rgba(0,0,0,0.1);
-      --radius: 8px;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: var(--dark);
-      background: var(--white);
-    }
-    h1, h2, h3 {
-      color: var(--primary);
-      line-height: 1.2;
-    }
-    p {
-      margin-bottom: 1rem;
-    }
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    header {
-      background: var(--white);
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-    }
-	.logo {
-    display: flex;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--primary);
-}
-
-.logo img {
-    height: 50px;
-    width: auto;
-	margin-left: 10px;
-    object-fit: contain;
-}
-
-@media (max-width: 480px) {
-    .logo img {
-        height: 40px;
-    }
-    .logo span {
-        font-size: 1.2rem;
-    }
-}
-
-    .menu-btn {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 21px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-    }
-    .menu-btn span {
-      display: block;
-      width: 100%;
-      height: 3px;
-	margin-left:60px;
-      background: var(--primary);
-      transition: all 0.3s ease;
-    }
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-	  
-    }
-    nav a {
-      color: var(--dark);
-      font-weight: 500;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: var(--secondary);
-    }
-    .banner {
-      position: relative;
-      height: 60vh;
-      max-height: 500px;
-      overflow: hidden;
-	  
-    }
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #ddd;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-    .slide.active {
-      opacity: 1;
-    }
-    .slide-content {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      padding: 0 1rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-    .slide-nav {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 1rem;
-      z-index: 3;
-      transform: translateY(-50%);
-    }
-    .slide-btn {
-      background: rgba(255,255,255,0.3);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .slide-btn:hover {
-      background: rgba(255,255,255,0.5);
-    }
-    .slide-dots {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      z-index: 3;
-    }
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .dot.active {
-      background: white;
-    }
-    .services {
-      padding: 3rem 0;
-    }
-    .services-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .service-item {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .service-item:hover {
-      transform: translateY(-5px);
-    }
-    .service-image {
-      width: 100%;
-      height: 180px;
-      background: #f0f0f0;
-      margin: 1rem 0;
-      border-radius: var(--radius);
-      display: none;
-    }
-    .service-item.active .service-image {
-      display: block;
-    }
-    .gallery {
-      padding: 3rem 0;
-      background: var(--light);
-    }
-    .gallery-slider {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding-bottom: 1rem;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-    .gallery-slide {
-      flex: 0 0 80%;
-      scroll-snap-align: start;
-    }
-    .gallery-image {
-      width: 100%;
-      height: 200px;
-      background: #f0f0f0;
-      border-radius: var(--radius);
-    }
-    .contact {
-      padding: 3rem 0;
-    }
-    .contact-form {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    .form-group {
-      margin-bottom: 1rem;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: var(--radius);
-      font-family: inherit;
-    }
-    textarea {
-      min-height: 150px;
-    }
-    .submit-btn {
-      background: var(--secondary);
-      color: var(--white);
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius);
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .submit-btn:hover {
-      background: var(--primary);
-    }
-    footer {
-      background: var(--primary);
-      color: var(--white);
-      padding: 2rem 0;
-      text-align: center;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .footer-links a {
-      color: var(--white);
-    }
-    .floating-buttons {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      z-index: 999;
-    }
-    .floating-btn {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 28px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-      position: relative;
-      cursor: pointer;
-    }
-    .floating-btn:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-    .floating-btn.whatsapp {
-      background-color: #25D366;
-    }
-    .floating-btn.instagram {
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    }
-    .tooltip {
-      position: absolute;
-      right: 75px;
-      background: rgba(0,0,0,0.8);
-      color: white;
-      padding: 8px 12px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: 500;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-      white-space: nowrap;
-    }
-    .floating-btn:hover .tooltip {
-      opacity: 1;
-    }
-    @media (max-width: 768px) {
-      .menu-btn {
-        display: flex;
-      }
-      nav ul {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: var(--white);
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-        gap: 1rem;
-        box-shadow: var(--shadow);
-        clip-path: circle(0% at 100% 0);
-        transition: clip-path 0.4s ease;
-      }
-      nav ul.active {
-        clip-path: circle(150% at 100% 0);
-      }
-      .menu-btn.active span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-      }
-      .menu-btn.active span:nth-child(2) {
-        opacity: 0;
-      }
-      .menu-btn.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-      }
-      .banner {
-        height: 50vh;
-      }
-      .gallery-slide {
-        flex: 0 0 90%;
-      }
-    }
-    @media (max-width: 480px) {
-      .services-list {
-        grid-template-columns: 1fr;
-      }
-      .footer-links {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .banner {
-        height: 40vh;
-      }
-      .floating-buttons {
-        bottom: 15px;
-        right: 15px;
-        gap: 10px;
-      }
-    }
-	
-	.banner {
-  position: relative;
-  height: calc(100vh - 80px); /* tinggi layar dikurangi tinggi header */
-  margin-top: 0px; /* offset agar tidak tertutup header */
-  overflow: hidden;
-}
-
-.slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-.slide.active {
-  opacity: 1;
-}
-
-.slide-content img {
-  display: none; /* gambar asli disembunyikan jika pakai background */
-}
-
-.slide {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* bisa diatur sesuai kebutuhan */
-  overflow: hidden;
-}
-
-.slide img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ✅ bikin full screen cover */
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.slide-content {
-  position: relative;
-  z-index: 2;
-  color: #fff; /* biar teks tetap jelas di atas gambar */
-  text-align: center;
-  padding: 20px;
-}
-
-
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container header-container">
-      <div class="logo">
-        <img src="images/INDOJAYA.png" alt="PD.INDOJAYA Genteng Bitumen Bandung" loading="eager">
-        <span margin-top=100px>PD.INDOJAYA</span>
-    </div>
-      <button class="menu-btn" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-		   <li><a href="#contact">Berita & Acara</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
- <section class="banner">
-  <!-- ✅ Slide 1 -->
-  <div class="slide active">
-    <img src="images/wpc1.png" 
-         alt="Panel WPC Bandung untuk Plafon dan Dinding" 
-         loading="lazy">
-    <div class="slide-content">
-      <h1>Jual Genteng Bitumen Bandung – Atap Aspal Berkualitas</h1>
-      <p>Panel WPC & atap bitumen tahan cuaca untuk rumah modern di Bandung</p>
-    </div>
-  </div>
-
-  <!-- ✅ Slide 2 -->
-  <div class="slide">
-    <img src="images/bitumen1.png" 
-         alt="Genteng Bitumen Premium CTI Bandung Tahan Lama" 
-         loading="lazy">
-    <div class="slide-content">
-      <h2>Genteng Bitumen Premium Bandung</h2>
-      <p>Atap bitumen CTI awet, elegan, dan ramah cuaca tropis</p>
-    </div>
-  </div>
-
-  <!-- ✅ Slide 3 -->
-  <div class="slide">
-    <img src="images/aluminium1.png" 
-         alt="Kusen Aluminium Bandung untuk Pintu dan Jendela" 
-         loading="lazy">
-    <div class="slide-content">
-      <h2>Kusen Aluminium Bandung</h2>
-      <p>Custom pintu & jendela aluminium modern dengan kualitas terbaik</p>
-    </div>
-  </div>
-
-  <!-- ✅ Slide 4 -->
-  <div class="slide">
-    <img src="images/wpc2.png" 
-         alt="WPC Bandung untuk Plafon Dinding dan Fasad" 
-         loading="lazy">
-    <div class="slide-content">
-      <h2>Panel WPC untuk Plafon & Dinding</h2>
-      <p>Solusi elegan & tahan cuaca untuk interior maupun eksterior</p>
-    </div>
-  </div>
-
-  <!-- ✅ Slide 5 -->
-  <div class="slide">
-    <img src="images/acp1.png" 
-         alt="Panel ACP Aluminium Bandung untuk Fasad Bangunan" 
-         loading="lazy">
-    <div class="slide-content">
-      <h2>Panel ACP Aluminium Bandung</h2>
-      <p>Material ACP berkualitas untuk fasad & desain arsitektur modern</p>
-    </div>
-  </div>
-
-
-
-   
-    <div class="slide-nav">
-      <button class="slide-btn prev-btn">❮</button>
-      <button class="slide-btn next-btn">❯</button>
-    </div>
-    <div class="slide-dots">
-      <button class="dot active" data-slide="0"></button>
-      <button class="dot" data-slide="1"></button>
-      <button class="dot" data-slide="2"></button>
-      <button class="dot" data-slide="3"></button>
-      <button class="dot" data-slide="4"></button>
-    </div>
-  </section>
-  <section id="services" class="services">
-    <div class="container">
-      <h2>Layanan Genteng Bitumen & Material Bangunan di Bandung</h2>
-      <div class="services-list">
-        <div class="service-item" onclick="this.classList.toggle('active')">
-          <h3>IPAL (INSTALASI PEMBUANGAN AIR LIMBAH)</h3>
-          <p>Kami menyediakan solusi instalasi pembuangan air limbah yang efisien dan ramah lingkungan, dirancang khusus untuk memenuhi kebutuhan industri maupun hunian.</p>
-          <div class="service-image"></div>
-        </div>
-        <div class="service-item" onclick="this.classList.toggle('active')">
-          <h3>Filter Media</h3>
-          <p>Kami menawarkan sistem filter sand, carbon, dan softener berkualitas tinggi untuk menyaring kotoran, menghilangkan bau, serta melunakkan air secara optimal bagi kebutuhan rumah tangga dan industri..</p>
-          <div class="service-image"></div>
-        </div>
-        <div class="service-item" onclick="this.classList.toggle('active')">
-          <h3>Genteng Aspal Bitumen</h3>
-          <p>Genteng bitumen kami hadir dengan desain elegan dan daya tahan tinggi, memberikan perlindungan maksimal serta tampilan atap yang mewah dan modern.</p>
-          <div class="service-image"></div>
-        </div>
-        <div class="service-item" onclick="this.classList.toggle('active')">
-          <h3>PVC/WPC Panel</h3>
-          <p>WPC (Wood Plastic Composite) kami adalah solusi inovatif yang tahan cuaca dan ramah lingkungan, ideal untuk plafon, dinding, dan pagar dengan tampilan elegan seperti kayu alami.</p>
-          <div class="service-image"></div>
-        </div>
-        <div class="service-item" onclick="this.classList.toggle('active')">
-          <h3>Kusen & Panel Aluminium (ACP)</h3>
-          <p>Kusen aluminium & Panel kami dirancang khusus untuk perumahan mewah dengan tampilan modern dan elegan, namun tetap hadir dengan harga yang terjangkau dan kualitas terbaik.</p>
-          <div class="service-image"></div>
-        </div>
-	
-			
-      </div>
-    </div>
-  </section>
-  <section id="gallery" class="gallery">
-    <div class="container">
-      <h2>Proyek Genteng Bitumen & Konstruksi di Bandung</h2>
-      <div class="gallery-slider">
-        <div class="gallery-slide">
-          <div class="gallery-image"></div>
-		  
-          <p>IPAL Installation Project</p>
-        </div>
-        <div class="gallery-slide">
-          <div class="gallery-image"></div>
+	<!DOCTYPE html>
+	<html lang="id">
+	<head>
 		
-          <p>Bitumen Roofing Project</p>
-        </div>
-        <div class="gallery-slide">
-          <div class="gallery-image"></div>
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "LocalBusiness",
+	  "@id": "https://www.pdindojaya.com#business",
+	  "name": "PD. INDOJAYA",
+	  "url": "https://www.pdindojaya.com",
+	  "logo": "https://www.pdindojaya.com/images/logo.png",
+	  "image": "https://www.pdindojaya.com/images/logo.png",
+	  "description": "Jual Genteng Bitumen di Bandung dengan harga kompetitif. Tersedia CTI, Tegola, Owens Corning, Bituline. Cocok untuk rumah, villa, dan proyek konstruksi.",
+	  "telephone": "+62-895-1295-4566",
+	  "address": {
+	    "@type": "PostalAddress",
+	    "streetAddress": "Jl. Cibaligo No.25",
+	    "addressLocality": "Cimahi",
+	    "addressRegion": "Jawa Barat",
+	    "postalCode": "40123",
+	    "addressCountry": "ID"
+	  },
+	  "areaServed": [
+	    "Bandung",
+	    "Cimahi",
+	    "Lembang",
+	    "Padalarang",
+	    "Kabupaten Bandung"
+	  ],
+	  "openingHours": "Mo-Sa 08:00-17:00",
+	  "sameAs": [
+	    "https://instagram.com/pdindojaya",
+	    "https://wa.me/6289512954566",
+		"https://www.facebook.com/pdindojaya",
+		"https://www.youtube.com/@pdindojaya",
+		"https://www.tiktok.com/@pdindojaya"
+	  ]
+	}
+	</script>
 	
-          <p>Aluminum Frame Installation</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== DIUBAH: tambahan internal link (minimal & non-intrusive) ========== -->
-  <section class="seo-link" style="text-align:center; padding:1rem 0;">
-    <div class="container">
-      <p style="margin:0;">
-        Ingin tahu lebih banyak tentang genteng bitumen untuk iklim Bandung? Baca: 
-        <a href="/blog/kelebihan-genteng-bitumen-bandung">Kelebihan Genteng Bitumen untuk Rumah di Bandung</a>
-      </p>
-    </div>
-  </section>
-
-<div style="text-align: center; margin-top: 2rem;">
-  <a href="berita.html" class="submit-btn" style="background: var(--primary); text-decoration: none; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; display: inline-block;">
-    Lihat Semua Berita & Acara
-  </a>
-</div>
-
-<section id="contact" class="contact">
-    <div class="container">
-      <h2>Contact Us</h2>
-      <form class="contact-form">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone">
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" required></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
-    </div>
-  </section>
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <p>© 2023 PD.INDOJAYA. All Rights Reserved.</p>
-    </div>
-  </footer>
-  <div class="floating-buttons">
-    <a href="https://wa.me/6289512954566" class="floating-btn whatsapp" target="_blank">
-      <i class="fab fa-whatsapp"></i>
-      <span class="tooltip">Chat via WhatsApp</span>
-    </a>
-    <a href="https://instagram.com/pdindojaya" class="floating-btn instagram" target="_blank">
-      <i class="fab fa-instagram"></i>
-      <span class="tooltip">Follow on Instagram</span>
-    </a>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const menuBtn = document.querySelector('.menu-btn');
-      const navMenu = document.querySelector('nav ul');
-      if (menuBtn && navMenu) {
-        menuBtn.addEventListener('click', () => {
-          menuBtn.classList.toggle('active');
-          navMenu.classList.toggle('active');
-        });
-      }
-      document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', () => {
-          menuBtn.classList.remove('active');
-          navMenu.classList.remove('active');
-        });
-      });
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.dot');
-      const prevBtn = document.querySelector('.prev-btn');
-      const nextBtn = document.querySelector('.next-btn');
-      let currentSlide = 0;
-      function showSlide(n) {
-        if (n >= slides.length) currentSlide = 0;
-        if (n < 0) currentSlide = slides.length - 1;
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
-      }
-      function nextSlide() {
-        currentSlide++;
-        showSlide(currentSlide);
-      }
-      function prevSlide() {
-        currentSlide--;
-        showSlide(currentSlide);
-      }
-      if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-      if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          currentSlide = index;
-          showSlide(currentSlide);
-        });
-      });
-      setInterval(nextSlide, 5000);
-    });
-  </script>
-</body>
-</html>
+		
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-70ZJZWK2Y5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-70ZJZWK2Y5');
+	</script>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="canonical" href="https://www.pdindojaya.com/">
+	<link rel="manifest" href="/manifest.webmanifest">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/logo192.png">
+	<meta property="og:title" content="PD.INDOJAYA | Jual Genteng Bitumen Bandung">
+	<meta property="og:description" content="Harga Genteng Bitumen Bandung">
+	<meta property="og:image" content="https://www.pdindojaya.com/images/logo.png">
+	<meta property="og:url" content="https://www.pdindojaya.com">
+	<meta property="og:type" content="website">
+	
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="PD.INDOJAYA">
+	<meta name="twitter:description" content="Jual Genteng Bitumen Bandung CTI TEGOLA OWEN CORNING SEETON MAXXI.">
+	<meta name="twitter:image" content="https://www.pdindojaya.com/images/logo.png">
+	
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <title>PD.INDOJAYA | Jual Genteng Bitumen Bandung | Harga Genteng Bitumen Bandung </title>
+	
+	  <!-- ========== DIUBAH: meta description (lebih natural, 150-160 char) ========== -->
+	  <meta name="description" content="Jual Genteng Bitumen di Bandung dengan harga kompetitif. Tersedia CTI, Tegola, Owens Corning, Bituline. Cocok untuk rumah, villa, dan proyek konstruksi.">
+	
+	  <meta name="keywords" content="Jual Genteng Bitumen Bandung | Harga Genteng Bitumen Bandung">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	  <style>
+	    :root {
+	      --primary: #064e3b;
+	      --secondary: #059669;
+	      --light: #ecfdf5;
+	      --dark: #1f2937;
+	      --gray: #6b7280;
+	      --white: #ffffff;
+	      --shadow: 0 2px 4px rgba(0,0,0,0.1);
+	      --radius: 8px;
+	    }
+	    * {
+	      box-sizing: border-box;
+	      margin: 0;
+	      padding: 0;
+	    }
+	    body {
+	      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	      line-height: 1.6;
+	      color: var(--dark);
+	      background: var(--white);
+	    }
+	    h1, h2, h3 {
+	      color: var(--primary);
+	      line-height: 1.2;
+	    }
+	    p {
+	      margin-bottom: 1rem;
+	    }
+	    .container {
+	      width: 100%;
+	      max-width: 1200px;
+	      margin: 0 auto;
+	      padding: 0 1rem;
+	    }
+	    header {
+	      background: var(--white);
+	      box-shadow: var(--shadow);
+	      position: sticky;
+	      top: 0;
+	      z-index: 100;
+	    }
+	    .header-container {
+	      display: flex;
+	      justify-content: space-between;
+	      align-items: center;
+	      padding: 1rem 0;
+	    }
+		.logo {
+	    display: flex;
+	    gap: 10px;
+	    font-weight: 700;
+	    font-size: 1.5rem;
+	    color: var(--primary);
+	}
+	
+	.logo img {
+	    height: 50px;
+	    width: auto;
+		margin-left: 10px;
+	    object-fit: contain;
+	}
+	
+	@media (max-width: 480px) {
+	    .logo img {
+	        height: 40px;
+	    }
+	    .logo span {
+	        font-size: 1.2rem;
+	    }
+	}
+	
+	    .menu-btn {
+	      display: none;
+	      flex-direction: column;
+	      justify-content: space-between;
+	      width: 30px;
+	      height: 21px;
+	      background: transparent;
+	      border: none;
+	      cursor: pointer;
+	    }
+	    .menu-btn span {
+	      display: block;
+	      width: 100%;
+	      height: 3px;
+		margin-left:60px;
+	      background: var(--primary);
+	      transition: all 0.3s ease;
+	    }
+	    nav ul {
+	      display: flex;
+	      list-style: none;
+	      gap: 1.5rem;
+		  
+	    }
+	    nav a {
+	      color: var(--dark);
+	      font-weight: 500;
+	      text-decoration: none;
+	      transition: color 0.3s;
+	    }
+	    nav a:hover {
+	      color: var(--secondary);
+	    }
+	    .banner {
+	      position: relative;
+	      height: 60vh;
+	      max-height: 500px;
+	      overflow: hidden;
+		  
+	    }
+	    .slide {
+	      position: absolute;
+	      top: 0;
+	      left: 0;
+	      width: 100%;
+	      height: 100%;
+	      background-color: #ddd;
+	      opacity: 0;
+		  transition: opacity 1s ease-in-out;
+	    }
+	    .slide.active {
+	      opacity: 1;
+	    }
+	    .slide-content {
+	      position: relative;
+	      z-index: 2;
+	      height: 100%;
+	      display: flex;
+	      flex-direction: column;
+	      justify-content: center;
+	      align-items: center;
+	      text-align: center;
+	      color: white;
+	      padding: 0 1rem;
+	      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+	    }
+	    .slide-nav {
+	      position: absolute;
+	      top: 50%;
+	      width: 100%;
+	      display: flex;
+	      justify-content: space-between;
+	      padding: 0 1rem;
+	      z-index: 3;
+	      transform: translateY(-50%);
+	    }
+	    .slide-btn {
+	      background: rgba(255,255,255,0.3);
+	      border: none;
+	      width: 40px;
+	      height: 40px;
+	      border-radius: 50%;
+	      display: flex;
+	      align-items: center;
+	      justify-content: center;
+	      cursor: pointer;
+	      transition: background 0.3s;
+	    }
+	    .slide-btn:hover {
+	      background: rgba(255,255,255,0.5);
+	    }
+	    .slide-dots {
+	      position: absolute;
+	      bottom: 20px;
+	      left: 50%;
+	      transform: translateX(-50%);
+	      display: flex;
+	      gap: 10px;
+	      z-index: 3;
+	    }
+	    .dot {
+	      width: 12px;
+	      height: 12px;
+	      border-radius: 50%;
+	      background: rgba(255,255,255,0.5);
+	      border: none;
+	      cursor: pointer;
+	      transition: background 0.3s;
+	    }
+	    .dot.active {
+	      background: white;
+	    }
+	    .services {
+	      padding: 3rem 0;
+	    }
+	    .services-list {
+	      display: grid;
+	      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	      gap: 1.5rem;
+	    }
+	    .service-item {
+	      background: var(--white);
+	      border-radius: var(--radius);
+	      padding: 1.5rem;
+	      box-shadow: var(--shadow);
+	      cursor: pointer;
+	      transition: transform 0.3s;
+	    }
+	    .service-item:hover {
+	      transform: translateY(-5px);
+	    }
+	    .service-image {
+	      width: 100%;
+	      height: 180px;
+	      background: #f0f0f0;
+	      margin: 1rem 0;
+	      border-radius: var(--radius);
+	      display: none;
+	    }
+	    .service-item.active .service-image {
+	      display: block;
+	    }
+	    .gallery {
+	      padding: 3rem 0;
+	      background: var(--light);
+	    }
+	    .gallery-slider {
+	      display: flex;
+	      overflow-x: auto;
+	      gap: 1rem;
+	      padding-bottom: 1rem;
+	      scroll-snap-type: x mandatory;
+	      -webkit-overflow-scrolling: touch;
+	    }
+	    .gallery-slide {
+	      flex: 0 0 80%;
+	      scroll-snap-align: start;
+	    }
+	    .gallery-image {
+	      width: 100%;
+	      height: 200px;
+	      background: #f0f0f0;
+	      border-radius: var(--radius);
+	    }
+	    .contact {
+	      padding: 3rem 0;
+	    }
+	    .contact-form {
+	      max-width: 500px;
+	      margin: 0 auto;
+	    }
+	    .form-group {
+	      margin-bottom: 1rem;
+	    }
+	    label {
+	      display: block;
+	      margin-bottom: 0.5rem;
+	      font-weight: 500;
+	    }
+	    input, textarea {
+	      width: 100%;
+	      padding: 0.75rem;
+	      border: 1px solid #ddd;
+	      border-radius: var(--radius);
+	      font-family: inherit;
+	    }
+	    textarea {
+	      min-height: 150px;
+	    }
+	    .submit-btn {
+	      background: var(--secondary);
+	      color: var(--white);
+	      border: none;
+	      padding: 0.75rem 1.5rem;
+	      border-radius: var(--radius);
+	      font-weight: 600;
+	      cursor: pointer;
+	      transition: background 0.3s;
+	    }
+	    .submit-btn:hover {
+	      background: var(--primary);
+	    }
+	    footer {
+	      background: var(--primary);
+	      color: var(--white);
+	      padding: 2rem 0;
+	      text-align: center;
+	    }
+	    .footer-links {
+	      display: flex;
+	      justify-content: center;
+	      gap: 1.5rem;
+	      margin-bottom: 1.5rem;
+	    }
+	    .footer-links a {
+	      color: var(--white);
+	    }
+	    .floating-buttons {
+	      position: fixed;
+	      bottom: 30px;
+	      right: 30px;
+	      display: flex;
+	      flex-direction: column;
+	      gap: 15px;
+	      z-index: 999;
+	    }
+	    .floating-btn {
+	      width: 60px;
+	      height: 60px;
+	      border-radius: 50%;
+	      display: flex;
+	      align-items: center;
+	      justify-content: center;
+	      color: white;
+	      font-size: 28px;
+	      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+	      transition: all 0.3s ease;
+	      position: relative;
+	      cursor: pointer;
+	    }
+	    .floating-btn:hover {
+	      transform: translateY(-5px) scale(1.1);
+	      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+	    }
+	    .floating-btn.whatsapp {
+	      background-color: #25D366;
+	    }
+	    .floating-btn.instagram {
+	      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+	    }
+	    .tooltip {
+	      position: absolute;
+	      right: 75px;
+	      background: rgba(0,0,0,0.8);
+	      color: white;
+	      padding: 8px 12px;
+	      border-radius: 4px;
+	      font-size: 14px;
+	      font-weight: 500;
+	      opacity: 0;
+	      pointer-events: none;
+	      transition: opacity 0.3s;
+	      white-space: nowrap;
+	    }
+	    .floating-btn:hover .tooltip {
+	      opacity: 1;
+	    }
+	    @media (max-width: 768px) {
+	      .menu-btn {
+	        display: flex;
+	      }
+	      nav ul {
+	        position: fixed;
+	        top: 70px;
+	        left: 0;
+	        width: 100%;
+	        background: var(--white);
+	        flex-direction: column;
+	        align-items: center;
+	        padding: 1rem 0;
+	        gap: 1rem;
+	        box-shadow: var(--shadow);
+	        clip-path: circle(0% at 100% 0);
+	        transition: clip-path 0.4s ease;
+	      }
+	      nav ul.active {
+	        clip-path: circle(150% at 100% 0);
+	      }
+	      .menu-btn.active span:nth-child(1) {
+	        transform: translateY(9px) rotate(45deg);
+	      }
+	      .menu-btn.active span:nth-child(2) {
+	        opacity: 0;
+	      }
+	      .menu-btn.active span:nth-child(3) {
+	        transform: translateY(-9px) rotate(-45deg);
+	      }
+	      .banner {
+	        height: 50vh;
+	      }
+	      .gallery-slide {
+	        flex: 0 0 90%;
+	      }
+	    }
+	    @media (max-width: 480px) {
+	      .services-list {
+	        grid-template-columns: 1fr;
+	      }
+	      .footer-links {
+	        flex-direction: column;
+	        gap: 0.5rem;
+	      }
+	      .banner {
+	        height: 40vh;
+	      }
+	      .floating-buttons {
+	        bottom: 15px;
+	        right: 15px;
+	        gap: 10px;
+	      }
+	    }
+		
+		.banner {
+	  position: relative;
+	  height: calc(100vh - 80px); /* tinggi layar dikurangi tinggi header */
+	  margin-top: 0px; /* offset agar tidak tertutup header */
+	  overflow: hidden;
+	}
+	
+	.slide {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  background-size: cover;
+	  background-position: center;
+	  opacity: 0;
+	  transition: opacity 0.8s ease;
+	}
+	
+	.slide.active {
+	  opacity: 1;
+	}
+	
+	.slide-content img {
+	  display: none; /* gambar asli disembunyikan jika pakai background */
+	}
+	
+	.slide {
+	  position: relative;
+	  width: 100%;
+	  height: 100vh; /* bisa diatur sesuai kebutuhan */
+	  overflow: hidden;
+	}
+	
+	.slide img {
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover; /* ✅ bikin full screen cover */
+	  top: 0;
+	  left: 0;
+	  z-index: 1;
+	}
+	
+	.slide-content {
+	  position: relative;
+	  z-index: 2;
+	  color: #fff; /* biar teks tetap jelas di atas gambar */
+	  text-align: center;
+	  padding: 20px;
+	}
+	
+	
+	  </style>
+	</head>
+	<body>
+	  <header>
+	    <div class="container header-container">
+	      <div class="logo">
+	        <img src="images/INDOJAYA.png" alt="PD.INDOJAYA Genteng Bitumen Bandung" loading="eager">
+	        <span margin-top=100px>PD.INDOJAYA</span>
+	    </div>
+	      <button class="menu-btn" aria-label="Toggle navigation">
+	        <span></span>
+	        <span></span>
+	        <span></span>
+	      </button>
+	      <nav>
+	        <ul>
+	          <li><a href="#home">Home</a></li>
+	          <li><a href="#services">Services</a></li>
+	          <li><a href="#gallery">Gallery</a></li>
+			   <li><a href="#contact">Berita & Acara</a></li>
+	          <li><a href="#contact">Contact</a></li>
+	        </ul>
+	      </nav>
+	    </div>
+	  </header>
+	 <section class="banner">
+	  <!-- ✅ Slide 1 -->
+	  <div class="slide active">
+	    <img src="images/wpc1.png" 
+	         alt="Panel WPC Bandung untuk Plafon dan Dinding" 
+	         loading="lazy">
+	    <div class="slide-content">
+	      <h1>Jual Genteng Bitumen Bandung – Atap Aspal Berkualitas</h1>
+	      <p>Panel WPC & atap bitumen tahan cuaca untuk rumah modern di Bandung</p>
+	    </div>
+	  </div>
+	
+	  <!-- ✅ Slide 2 -->
+	  <div class="slide">
+	    <img src="images/bitumen1.png" 
+	         alt="Genteng Bitumen Premium CTI Bandung Tahan Lama" 
+	         loading="lazy">
+	    <div class="slide-content">
+	      <h2>Genteng Bitumen Premium Bandung</h2>
+	      <p>Atap bitumen CTI awet, elegan, dan ramah cuaca tropis</p>
+	    </div>
+	  </div>
+	
+	  <!-- ✅ Slide 3 -->
+	  <div class="slide">
+	    <img src="images/aluminium1.png" 
+	         alt="Kusen Aluminium Bandung untuk Pintu dan Jendela" 
+	         loading="lazy">
+	    <div class="slide-content">
+	      <h2>Kusen Aluminium Bandung</h2>
+	      <p>Custom pintu & jendela aluminium modern dengan kualitas terbaik</p>
+	    </div>
+	  </div>
+	
+	  <!-- ✅ Slide 4 -->
+	  <div class="slide">
+	    <img src="images/wpc2.png" 
+	         alt="WPC Bandung untuk Plafon Dinding dan Fasad" 
+	         loading="lazy">
+	    <div class="slide-content">
+	      <h2>Panel WPC untuk Plafon & Dinding</h2>
+	      <p>Solusi elegan & tahan cuaca untuk interior maupun eksterior</p>
+	    </div>
+	  </div>
+	
+	  <!-- ✅ Slide 5 -->
+	  <div class="slide">
+	    <img src="images/acp1.png" 
+	         alt="Panel ACP Aluminium Bandung untuk Fasad Bangunan" 
+	         loading="lazy">
+	    <div class="slide-content">
+	      <h2>Panel ACP Aluminium Bandung</h2>
+	      <p>Material ACP berkualitas untuk fasad & desain arsitektur modern</p>
+	    </div>
+	  </div>
+	
+	
+	
+	   
+	    <div class="slide-nav">
+	      <button class="slide-btn prev-btn">❮</button>
+	      <button class="slide-btn next-btn">❯</button>
+	    </div>
+	    <div class="slide-dots">
+	      <button class="dot active" data-slide="0"></button>
+	      <button class="dot" data-slide="1"></button>
+	      <button class="dot" data-slide="2"></button>
+	      <button class="dot" data-slide="3"></button>
+	      <button class="dot" data-slide="4"></button>
+	    </div>
+	  </section>
+	  <section id="services" class="services">
+	    <div class="container">
+	      <h2>Layanan Genteng Bitumen & Material Bangunan di Bandung</h2>
+	      <div class="services-list">
+	        <div class="service-item" onclick="this.classList.toggle('active')">
+	          <h3>IPAL (INSTALASI PEMBUANGAN AIR LIMBAH)</h3>
+	          <p>Kami menyediakan solusi instalasi pembuangan air limbah yang efisien dan ramah lingkungan, dirancang khusus untuk memenuhi kebutuhan industri maupun hunian.</p>
+	          <div class="service-image"></div>
+	        </div>
+	        <div class="service-item" onclick="this.classList.toggle('active')">
+	          <h3>Filter Media</h3>
+	          <p>Kami menawarkan sistem filter sand, carbon, dan softener berkualitas tinggi untuk menyaring kotoran, menghilangkan bau, serta melunakkan air secara optimal bagi kebutuhan rumah tangga dan industri..</p>
+	          <div class="service-image"></div>
+	        </div>
+	        <div class="service-item" onclick="this.classList.toggle('active')">
+	          <h3>Genteng Aspal Bitumen</h3>
+	          <p>Genteng bitumen kami hadir dengan desain elegan dan daya tahan tinggi, memberikan perlindungan maksimal serta tampilan atap yang mewah dan modern.</p>
+	          <div class="service-image"></div>
+	        </div>
+	        <div class="service-item" onclick="this.classList.toggle('active')">
+	          <h3>PVC/WPC Panel</h3>
+	          <p>WPC (Wood Plastic Composite) kami adalah solusi inovatif yang tahan cuaca dan ramah lingkungan, ideal untuk plafon, dinding, dan pagar dengan tampilan elegan seperti kayu alami.</p>
+	          <div class="service-image"></div>
+	        </div>
+	        <div class="service-item" onclick="this.classList.toggle('active')">
+	          <h3>Kusen & Panel Aluminium (ACP)</h3>
+	          <p>Kusen aluminium & Panel kami dirancang khusus untuk perumahan mewah dengan tampilan modern dan elegan, namun tetap hadir dengan harga yang terjangkau dan kualitas terbaik.</p>
+	          <div class="service-image"></div>
+	        </div>
+		
+				
+	      </div>
+	    </div>
+	  </section>
+	  <section id="gallery" class="gallery">
+	    <div class="container">
+	      <h2>Proyek Genteng Bitumen & Konstruksi di Bandung</h2>
+	      <div class="gallery-slider">
+	        <div class="gallery-slide">
+	          <div class="gallery-image"></div>
+			  
+	          <p>IPAL Installation Project</p>
+	        </div>
+	        <div class="gallery-slide">
+	          <div class="gallery-image"></div>
+			
+	          <p>Bitumen Roofing Project</p>
+	        </div>
+	        <div class="gallery-slide">
+	          <div class="gallery-image"></div>
+		
+	          <p>Aluminum Frame Installation</p>
+	        </div>
+	      </div>
+	    </div>
+	  </section>
+	
+	  <!-- ========== DIUBAH: tambahan internal link (minimal & non-intrusive) ========== -->
+	  <section class="seo-link" style="text-align:center; padding:1rem 0;">
+	    <div class="container">
+	      <p style="margin:0;">
+	        Ingin tahu lebih banyak tentang genteng bitumen untuk iklim Bandung? Baca: 
+	        <a href="/blog/kelebihan-genteng-bitumen-bandung">Kelebihan Genteng Bitumen untuk Rumah di Bandung</a>
+	      </p>
+	    </div>
+	  </section>
+	
+	<div style="text-align: center; margin-top: 2rem;">
+	  <a href="berita.html" class="submit-btn" style="background: var(--primary); text-decoration: none; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; display: inline-block;">
+	    Lihat Semua Berita & Acara
+	  </a>
+	</div>
+	
+	<section id="contact" class="contact">
+	    <div class="container">
+	      <h2>Contact Us</h2>
+	      <form class="contact-form">
+	        <div class="form-group">
+	          <label for="name">Name</label>
+	          <input type="text" id="name" required>
+	        </div>
+	        <div class="form-group">
+	          <label for="email">Email</label>
+	          <input type="email" id="email" required>
+	        </div>
+	        <div class="form-group">
+	          <label for="phone">Phone Number</label>
+	          <input type="tel" id="phone">
+	        </div>
+	        <div class="form-group">
+	          <label for="message">Message</label>
+	          <textarea id="message" required></textarea>
+	        </div>
+	        <button type="submit" class="submit-btn">Send Message</button>
+	      </form>
+	    </div>
+	  </section>
+	  <footer>
+	    <div class="container">
+	      <div class="footer-links">
+	        <a href="#home">Home</a>
+	        <a href="#services">Services</a>
+	        <a href="#gallery">Gallery</a>
+	        <a href="#contact">Contact</a>
+	      </div>
+	      <p>© 2023 PD.INDOJAYA. All Rights Reserved.</p>
+	    </div>
+	  </footer>
+	  <div class="floating-buttons">
+	    <a href="https://wa.me/6289512954566" class="floating-btn whatsapp" target="_blank">
+	      <i class="fab fa-whatsapp"></i>
+	      <span class="tooltip">Chat via WhatsApp</span>
+	    </a>
+	    <a href="https://instagram.com/pdindojaya" class="floating-btn instagram" target="_blank">
+	      <i class="fab fa-instagram"></i>
+	      <span class="tooltip">Follow on Instagram</span>
+	    </a>
+	  </div>
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+	  const menuBtn = document.querySelector('.menu-btn');
+	  const navMenu = document.querySelector('nav ul');
+	  if (menuBtn && navMenu) {
+	    menuBtn.addEventListener('click', () => {
+	      menuBtn.classList.toggle('active');
+	      navMenu.classList.toggle('active');
+	    });
+	  }
+	  document.querySelectorAll('nav a').forEach(link => {
+	    link.addEventListener('click', () => {
+	      menuBtn.classList.remove('active');
+	      navMenu.classList.remove('active');
+	    });
+	  });
+	
+	  // ================= SLIDER =================
+	  const slides = document.querySelectorAll('.slide');
+	  const dots = document.querySelectorAll('.dot');
+	  const prevBtn = document.querySelector('.prev-btn');
+	  const nextBtn = document.querySelector('.next-btn');
+	  const banner = document.querySelector('.banner');
+	  let currentSlide = 0;
+	
+	 function showSlide(n) {
+	  if (n >= slides.length) n = 0;
+	  if (n < 0) n = slides.length - 1;
+	  currentSlide = n;
+	  slides.forEach(slide => slide.classList.remove('active'));
+	  dots.forEach(dot => dot.classList.remove('active'));
+	  slides[currentSlide].classList.add('active');
+	  dots[currentSlide].classList.add('active');
+	}
+	
+	
+	  function nextSlide() {
+	    currentSlide++;
+	    showSlide(currentSlide);
+	  }
+	
+	  function prevSlide() {
+	    currentSlide--;
+	    showSlide(currentSlide);
+	  }
+	
+	  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+	  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+	
+	  dots.forEach((dot, index) => {
+	    dot.addEventListener('click', () => {
+	      currentSlide = index;
+	      showSlide(currentSlide);
+	    });
+	  });
+	
+	  // ✅ Auto slide
+	  setInterval(nextSlide, 5000);
+	
+	  // ✅ Geser manual (HP + desktop)
+	  let startX = 0;
+	  let isDragging = false;
+	
+	  // Touch (HP)
+	  banner.addEventListener('touchstart', e => {
+	    startX = e.touches[0].clientX;
+	  });
+	
+	  banner.addEventListener('touchend', e => {
+	    let endX = e.changedTouches[0].clientX;
+	    handleSwipe(startX, endX);
+	  });
+	
+	  // Mouse (Desktop)
+	  banner.addEventListener('mousedown', e => {
+	    isDragging = true;
+	    startX = e.clientX;
+	  });
+	
+	  banner.addEventListener('mouseup', e => {
+	    if (!isDragging) return;
+	    isDragging = false;
+	    let endX = e.clientX;
+	    handleSwipe(startX, endX);
+	  });
+	
+	  function handleSwipe(start, end) {
+	    if (start - end > 50) {
+	      nextSlide(); // geser kiri
+	    } else if (end - start > 50) {
+	      prevSlide(); // geser kanan
+	    }
+	  }
+	});
+	</script>
+	
+	
+	
+	</body>
+	</html>
