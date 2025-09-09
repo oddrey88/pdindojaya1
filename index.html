@@ -559,7 +559,7 @@ pointer-events: none;
 /* ===================================================================== */
 
 /* === PERBAIKAN TAMPILAN MOBILE UNTUK SLIDER === */
-@media (max-width: 1068px) {
+@media (max-width: 768px) {
   /* Tombol panah */
   .slide-nav .slide-btn {
     top: 50% !important;
@@ -572,7 +572,10 @@ pointer-events: none;
   }
 
   .slide-nav .prev-btn { left: 15px !important; }
-  .slide-nav .next-btn { right: -30px !important; }
+.slide-nav .next-btn {
+  right: 0 !important;   /* benar-benar tempel ke sisi kanan */
+  transform: translateY(-50%); /* biar tetap sejajar vertikal */
+}
 
   /* Posisi teks */
   .banner .slide-content {
