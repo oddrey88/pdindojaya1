@@ -5,13 +5,40 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "LocalBusiness",
+  "@id": "https://www.pdindojaya.com#business",
+  "name": "PD. INDOJAYA",
   "url": "https://www.pdindojaya.com",
   "logo": "https://www.pdindojaya.com/images/logo.png",
-  "name": "PD. INDOJAYA"
+  "image": "https://www.pdindojaya.com/images/logo.png",
+  "description": "Jual Genteng Bitumen di Bandung dengan harga kompetitif. Tersedia CTI, Tegola, Owens Corning, Bituline. Cocok untuk rumah, villa, dan proyek konstruksi.",
+  "telephone": "+62-895-1295-4566",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Jl. Cibaligo No.25",
+    "addressLocality": "Cimahi",
+    "addressRegion": "Jawa Barat",
+    "postalCode": "40123",
+    "addressCountry": "ID"
+  },
+  "areaServed": [
+    "Bandung",
+    "Cimahi",
+    "Lembang",
+    "Padalarang",
+    "Kabupaten Bandung"
+  ],
+  "openingHours": "Mo-Sa 08:00-17:00",
+  "sameAs": [
+    "https://instagram.com/pdindojaya",
+    "https://wa.me/6289512954566",
+	"https://www.facebook.com/pdindojaya",
+	"https://www.youtube.com/@pdindojaya",
+	"https://www.tiktok.com/@pdindojaya"
+  ]
 }
 </script>
-	
+
 	
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-70ZJZWK2Y5"></script>
@@ -29,14 +56,14 @@
 <link rel="apple-touch-icon" href="/logo192.png">
 <meta property="og:title" content="PD.INDOJAYA | Jual Genteng Bitumen Bandung">
 <meta property="og:description" content="Harga Genteng Bitumen Bandung">
-<meta property="og:image" content="https://www.pdindojaya.com/logo.png">
+<meta property="og:image" content="https://www.pdindojaya.com/images/logo.png">
 <meta property="og:url" content="https://www.pdindojaya.com">
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PD.INDOJAYA">
 <meta name="twitter:description" content="Jual Genteng Bitumen Bandung CTI TEGOLA OWEN CORNING SEETON MAXXI.">
-<meta name="twitter:image" content="https://www.pdindojaya.com/logo.png">
+<meta name="twitter:image" content="https://www.pdindojaya.com/images/logo.png">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,33 +73,6 @@
   <meta name="description" content="Jual Genteng Bitumen di Bandung dengan harga kompetitif. Tersedia CTI, Tegola, Owens Corning, Bituline. Cocok untuk rumah, villa, dan proyek konstruksi.">
 
   <meta name="keywords" content="Jual Genteng Bitumen Bandung | Harga Genteng Bitumen Bandung">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "PD.INDOJAYA",
-    "url": "https://www.pdindojaya.com",
-    "logo": "https://www.pdindojaya.com/logo.png",
-    "description": "Jual Genteng Bitumen Bandung | Harga Genteng Bitumen Bandung",
-    "telephone": "+62-895-1295-4566",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Jl. Contoh No. 123",
-      "addressLocality": "Bandung",
-      "addressRegion": "Jawa Barat",
-      "postalCode": "40123",
-      "addressCountry": "ID"
-    },
-    "areaServed": [
-      "Bandung",
-      "Cimahi",
-      "Lembang",
-      "Padalarang",
-      "Kabupaten Bandung"
-    ],
-    "openingHours": "Mo-Sa 08:00-17:00"
-  }
-  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -495,13 +495,39 @@
   display: none; /* gambar asli disembunyikan jika pakai background */
 }
 
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* bisa diatur sesuai kebutuhan */
+  overflow: hidden;
+}
+
+.slide img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ✅ bikin full screen cover */
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  color: #fff; /* biar teks tetap jelas di atas gambar */
+  text-align: center;
+  padding: 20px;
+}
+
+
   </style>
 </head>
 <body>
   <header>
     <div class="container header-container">
       <div class="logo">
-        <img src="images/INDOJAYA.png" alt="PD.INDOJAYA Logo">
+        <img src="images/INDOJAYA.png" alt="PD.INDOJAYA Genteng Bitumen Bandung" loading="eager">
         <span margin-top=100px>PD.INDOJAYA</span>
     </div>
       <button class="menu-btn" aria-label="Toggle navigation">
@@ -520,43 +546,63 @@
       </nav>
     </div>
   </header>
-  <section class="banner">
-   <div class="slide active" style="background-image: url('images/wpc1.png');">
-  <div class="slide-content">
-    <!-- ========== DIUBAH: H1 agar mengandung kata kunci lokal ========== -->
-    <h1>Jual Genteng Bitumen Bandung – Atap Aspal Berkualitas</h1>
-    <p>Expertise in water treatment and sustainable building</p>
+ <section class="banner">
+  <!-- ✅ Slide 1 -->
+  <div class="slide active">
+    <img src="images/wpc1.png" 
+         alt="Panel WPC Bandung untuk Plafon dan Dinding" 
+         loading="lazy">
+    <div class="slide-content">
+      <h1>Jual Genteng Bitumen Bandung – Atap Aspal Berkualitas</h1>
+      <p>Panel WPC & atap bitumen tahan cuaca untuk rumah modern di Bandung</p>
+    </div>
   </div>
-</div>
 
-    <div class="slide" style="background-image: url('images/bitumen1.png');">
-  <div class="slide-content">
-    <h1>Durable Roofing Systems</h1>
-    <p>Premium bitumen and composite roofing materials</p>
+  <!-- ✅ Slide 2 -->
+  <div class="slide">
+    <img src="images/bitumen1.png" 
+         alt="Genteng Bitumen Premium CTI Bandung Tahan Lama" 
+         loading="lazy">
+    <div class="slide-content">
+      <h2>Genteng Bitumen Premium Bandung</h2>
+      <p>Atap bitumen CTI awet, elegan, dan ramah cuaca tropis</p>
+    </div>
   </div>
-</div>
 
-<div class="slide " style="background-image: url('images/aluminium1.png');">
-  <div class="slide-content">
-    <h1>Aluminum Framing</h1>
-    <p>Custom windows and doors for modern buildings</p>
+  <!-- ✅ Slide 3 -->
+  <div class="slide">
+    <img src="images/aluminium1.png" 
+         alt="Kusen Aluminium Bandung untuk Pintu dan Jendela" 
+         loading="lazy">
+    <div class="slide-content">
+      <h2>Kusen Aluminium Bandung</h2>
+      <p>Custom pintu & jendela aluminium modern dengan kualitas terbaik</p>
+    </div>
   </div>
-</div>
 
-<div class="slide " style="background-image: url('images/wpc2.png');">
-  <div class="slide-content">
-    <h1>Wood Plastic Composite</h1>
-    <p>Elegant and weather-resistant WPC — the smart solution for your walls, ceilings, and fences!</p>
+  <!-- ✅ Slide 4 -->
+  <div class="slide">
+    <img src="images/wpc2.png" 
+         alt="WPC Bandung untuk Plafon Dinding dan Fasad" 
+         loading="lazy">
+    <div class="slide-content">
+      <h2>Panel WPC untuk Plafon & Dinding</h2>
+      <p>Solusi elegan & tahan cuaca untuk interior maupun eksterior</p>
+    </div>
   </div>
-</div>
 
-<div class="slide " style="background-image: url('images/acp1.png');">
-  <div class="slide-content">
-    <h1>Trusted Since 2008</h1>
-    <p>Over 15 years of construction excellence</p>
+  <!-- ✅ Slide 5 -->
+  <div class="slide">
+    <img src="images/acp1.png" 
+         alt="Panel ACP Aluminium Bandung untuk Fasad Bangunan" 
+         loading="lazy">
+    <div class="slide-content">
+      <h2>Panel ACP Aluminium Bandung</h2>
+      <p>Material ACP berkualitas untuk fasad & desain arsitektur modern</p>
+    </div>
   </div>
-</div>
 </section>
+
 
 
    
@@ -574,7 +620,7 @@
   </section>
   <section id="services" class="services">
     <div class="container">
-      <h2>Our Services</h2>
+      <h2>Layanan Genteng Bitumen & Material Bangunan di Bandung</h2>
       <div class="services-list">
         <div class="service-item" onclick="this.classList.toggle('active')">
           <h3>IPAL (INSTALASI PEMBUANGAN AIR LIMBAH)</h3>
@@ -608,7 +654,7 @@
   </section>
   <section id="gallery" class="gallery">
     <div class="container">
-      <h2>Our Projects</h2>
+      <h2>Proyek Genteng Bitumen & Konstruksi di Bandung</h2>
       <div class="gallery-slider">
         <div class="gallery-slide">
           <div class="gallery-image"></div>
