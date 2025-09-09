@@ -53,7 +53,7 @@
 	<link rel="canonical" href="https://www.pdindojaya.com/">
 	<link rel="manifest" href="/manifest.webmanifest">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="/logo192.png">
+	<link rel="apple-touch-icon" href="/images/logo.png">
 	<meta property="og:title" content="PD.INDOJAYA | Jual Genteng Bitumen Bandung">
 	<meta property="og:description" content="Harga Genteng Bitumen Bandung">
 	<meta property="og:image" content="https://www.pdindojaya.com/images/logo.png">
@@ -757,77 +757,80 @@
 	    });
 	  });
 	
-	  // ================= SLIDER =================
+  // ================= SLIDER =================
   const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
   const banner = document.querySelector('.banner');
 
-  // safety: jika elemen tidak ada, hentikan
-  if (!slides || slides.length === 0 || !banner) return;
+  if (!slides || slides.length === 0 || !banner) {
+    // nothing to do
+    return;
+  }
 
   let currentSlide = 0;
   let autoTimer = null;
   const AUTO_DELAY = 5000;
-  let startX = 0;
-  let isDragging = false;
+  const TRANSITION_MS = 800; // should match CSS transition
+
+  // make sure all slides start hidden except first (safe-guard if CSS conflicted)
+  slides.forEach((s, i) => {
+    s.style.display = (i === 0) ? 'block' : 'none';
+    s.style.opacity = (i === 0) ? '1' : '0';
+  });
+  dots.forEach((d, i) => d.classList.toggle('active', i === 0));
 
   function showSlide(n) {
     if (n >= slides.length) n = 0;
     if (n < 0) n = slides.length - 1;
+    if (n === currentSlide) return;
+
+    const prev = currentSlide;
     currentSlide = n;
 
-    slides.forEach((slide, i) => {
-      // pastikan hanya slide aktif yang ditampilkan
-      if (i === currentSlide) {
-        slide.classList.add('active');
-        slide.style.display = 'block';
-      } else {
-        slide.classList.remove('active');
-        slide.style.display = 'none';
-      }
-    });
+    // fade out prev
+    slides[prev].classList.remove('active');
+    slides[prev].style.opacity = '0';
+    // after transition hide the element so it doesn't capture pointer events
+    setTimeout(() => {
+      if (prev !== currentSlide) slides[prev].style.display = 'none';
+    }, TRANSITION_MS);
 
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentSlide);
-    });
+    // show & fade in current
+    slides[currentSlide].style.display = 'block';
+    // force a reflow so opacity transition triggers reliably
+    void slides[currentSlide].offsetWidth;
+    slides[currentSlide].classList.add('active');
+    slides[currentSlide].style.opacity = '1';
+
+    // update dots
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
   }
 
-  function nextSlide() {
-    showSlide(currentSlide + 1);
-  }
+  function nextSlide() { showSlide(currentSlide + 1); }
+  function prevSlide() { showSlide(currentSlide - 1); }
 
-  function prevSlide() {
-    showSlide(currentSlide - 1);
-  }
-
-  // tombol next/prev
+  // controls
   if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAuto(); });
   if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAuto(); });
 
-  // dot navigation
-  if (dots && dots.length) {
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => { showSlide(idx); resetAuto(); });
-    });
-  }
+  // dots
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => { showSlide(idx); resetAuto(); });
+  });
 
-  // touch untuk mobile (swipe)
-  banner.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-
+  // swipe support (touch)
+  let startX = 0;
+  let isDragging = false;
+  banner.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
   banner.addEventListener('touchend', e => {
-    const endX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : 0;
+    const endX = e.changedTouches[0].clientX;
     handleSwipe(startX, endX);
   });
 
-  // mouse drag untuk desktop
-  banner.addEventListener('mousedown', e => {
-    isDragging = true;
-    startX = e.clientX;
-  });
+  // mouse drag (desktop)
+  banner.addEventListener('mousedown', e => { isDragging = true; startX = e.clientX; });
   banner.addEventListener('mouseup', e => {
     if (!isDragging) return;
     isDragging = false;
@@ -836,40 +839,29 @@
   banner.addEventListener('mouseleave', () => { isDragging = false; });
 
   function handleSwipe(start, end) {
-    if (start - end > 50) { // geser kiri => next
-      nextSlide(); resetAuto();
-    } else if (end - start > 50) { // geser kanan => prev
-      prevSlide(); resetAuto();
-    }
+    if (start - end > 50) { nextSlide(); resetAuto(); }      // left swipe -> next
+    else if (end - start > 50) { prevSlide(); resetAuto(); } // right swipe -> prev
   }
 
-  // AUTO slide dengan kontrol timer supaya bisa di-reset saat interaksi
-  function startAuto() {
-    stopAuto();
-    autoTimer = setInterval(nextSlide, AUTO_DELAY);
-  }
-  function stopAuto() {
-    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
-  }
-  function resetAuto() {
-    stopAuto();
-    startAuto();
-  }
+  // auto play with reset on interaction
+  function startAuto() { stopAuto(); autoTimer = setInterval(nextSlide, AUTO_DELAY); }
+  function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+  function resetAuto() { stopAuto(); startAuto(); }
 
-  // pause saat hover (opsional tapi berguna)
   banner.addEventListener('mouseenter', stopAuto);
   banner.addEventListener('mouseleave', startAuto);
 
-  // keyboard left/right
+  // keyboard controls
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') { prevSlide(); resetAuto(); }
     if (e.key === 'ArrowRight') { nextSlide(); resetAuto(); }
   });
 
-  // inisialisasi awal
-  showSlide(0);
+  // init
+  showSlide(0); // ensure classes set
   startAuto();
   // ================= END SLIDER =================
+
 	
 	
 	</body>
