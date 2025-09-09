@@ -772,69 +772,129 @@ pointer-events: none;
     </a>
   </div>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const slides = document.querySelectorAll(".slide");
-  const dotsContainer = document.querySelector(".dots");
-  const prevBtn = document.querySelector(".prev");
-  const nextBtn = document.querySelector(".next");
-  const banner = document.querySelector(".banner");
-
-  let currentIndex = 0;
-  let autoSlideInterval;
-
-  // buat dots
-  slides.forEach((_, index) => {
-    const dot = document.createElement("span");
-    dot.classList.add("dot");
-    if (index === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => showSlide(index));
-    dotsContainer.appendChild(dot);
+document.addEventListener('DOMContentLoaded', function () {
+  const menuBtn = document.querySelector('.menu-btn');
+  const navMenu = document.querySelector('nav ul');
+  if (menuBtn && navMenu) {
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+  }
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuBtn.classList.remove('active');
+      navMenu.classList.remove('active');
+    });
   });
 
-  const dots = document.querySelectorAll(".dot");
+  // ================= SLIDER =================
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  const banner = document.querySelector('.banner');
 
-  function showSlide(index) {
-    slides[currentIndex].classList.remove("active");
-    dots[currentIndex].classList.remove("active");
-    currentIndex = (index + slides.length) % slides.length;
-    slides[currentIndex].classList.add("active");
-    dots[currentIndex].classList.add("active");
+  if (!slides || slides.length === 0 || !banner) {
+    // nothing to do
+    return;
   }
 
-  function nextSlide() {
-    showSlide(currentIndex + 1);
+  let currentSlide = 0;
+  let autoTimer = null;
+  const AUTO_DELAY = 5000;
+  const TRANSITION_MS = 800; // should match CSS transition
+
+  // make sure all slides start hidden except first (safe-guard if CSS conflicted)
+  slides.forEach((s, i) => {
+    s.style.display = (i === 0) ? 'block' : 'none';
+    s.style.opacity = (i === 0) ? '1' : '0';
+  });
+  dots.forEach((d, i) => d.classList.toggle('active', i === 0));
+
+  function showSlide(n) {
+    if (n >= slides.length) n = 0;
+    if (n < 0) n = slides.length - 1;
+    if (n === currentSlide) return;
+
+    const prev = currentSlide;
+    currentSlide = n;
+
+    // fade out prev
+    slides[prev].classList.remove('active');
+    slides[prev].style.opacity = '0';
+    // after transition hide the element so it doesn't capture pointer events
+    setTimeout(() => {
+      if (prev !== currentSlide) slides[prev].style.display = 'none';
+    }, TRANSITION_MS);
+
+    // show & fade in current
+    slides[currentSlide].style.display = 'block';
+    // force a reflow so opacity transition triggers reliably
+    void slides[currentSlide].offsetWidth;
+    slides[currentSlide].classList.add('active');
+    slides[currentSlide].style.opacity = '1';
+
+    // update dots
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
   }
 
-  function prevSlide() {
-    showSlide(currentIndex - 1);
-  }
+  function nextSlide() { showSlide(currentSlide + 1); }
+  function prevSlide() { showSlide(currentSlide - 1); }
 
-  nextBtn.addEventListener("click", nextSlide);
-  prevBtn.addEventListener("click", prevSlide);
+  // controls
+  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAuto(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAuto(); });
 
-  // auto slide
-  function startAutoSlide() {
-    autoSlideInterval = setInterval(nextSlide, 5000);
-  }
-  function stopAutoSlide() {
-    clearInterval(autoSlideInterval);
-  }
-
-  banner.addEventListener("mouseenter", stopAutoSlide);
-  banner.addEventListener("mouseleave", startAutoSlide);
-
-  // keyboard navigation
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") prevSlide();
-    if (e.key === "ArrowRight") nextSlide();
+  // dots
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => { showSlide(idx); resetAuto(); });
   });
 
-  // ✅ Swipe/drag dinonaktifkan agar scroll vertikal normal
+  // swipe support (touch)
+  //let startX = 0;
+ // let isDragging = false;
+ // banner.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+ // banner.addEventListener('touchend', e => {
+//    const endX = e.changedTouches[0].clientX;
+ //   handleSwipe(startX, endX);
+//  });
 
-  startAutoSlide();
-});
+  // mouse drag (desktop)
+  banner.addEventListener('mousedown', e => { isDragging = true; startX = e.clientX; });
+  banner.addEventListener('mouseup', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    handleSwipe(startX, e.clientX);
+  });
+  banner.addEventListener('mouseleave', () => { isDragging = false; });
+
+  function handleSwipe(start, end) {
+    if (start - end > 50) { nextSlide(); resetAuto(); }      // left swipe -> next
+    else if (end - start > 50) { prevSlide(); resetAuto(); } // right swipe -> prev
+  }
+
+  // auto play with reset on interaction
+  function startAuto() { stopAuto(); autoTimer = setInterval(nextSlide, AUTO_DELAY); }
+  function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+  function resetAuto() { stopAuto(); startAuto(); }
+
+  banner.addEventListener('mouseenter', stopAuto);
+  banner.addEventListener('mouseleave', startAuto);
+
+  // keyboard controls
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { prevSlide(); resetAuto(); }
+    if (e.key === 'ArrowRight') { nextSlide(); resetAuto(); }
+  });
+
+  // init
+  showSlide(0); // ensure classes set
+  startAuto();
+  // ================= END SLIDER =================
+
+}); /* <-- IMPORTANT: menutup DOMContentLoaded listener */
 </script>
-
 
 
 </body>
